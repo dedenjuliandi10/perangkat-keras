@@ -328,13 +328,13 @@
 
       <!-- Quick Navigasi Sub-Materi (A - G) -->
       <div class="materi-quick-nav">
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-a')">A. Pengertian</button>
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-b')">B. Input</button>
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-c')">C. Proses</button>
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-d')">D. Output</button>
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-e')">E. Penyimpanan</button>
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-f')">F. Komunikasi</button>
-        <button class="quick-nav-btn" onclick="scrollToMateri('materi-g')">G. Cara Kerja</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-a', this)">A. Pengertian</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-b', this)">B. Input</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-c', this)">C. Proses</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-d', this)">D. Output</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-e', this)">E. Penyimpanan</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-f', this)">F. Komunikasi</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-g', this)">G. Cara Kerja</button>
       </div>
 
       <!-- SUB-MATERI A: PENGERTIAN PERANGKAT KERAS -->
@@ -400,36 +400,46 @@
               <div class="flow-step-item">
                 <div class="step-num">1</div>
                 <div class="step-icon">👤</div>
-                <strong>PENGGUNA</strong>
-                <small>Memberi perintah/data</small>
+                <div class="flow-step-info">
+                  <strong>PENGGUNA</strong>
+                  <small>Memberi perintah/data</small>
+                </div>
               </div>
               <div class="flow-arrow">➔</div>
               <div class="flow-step-item">
                 <div class="step-num">2</div>
                 <div class="step-icon">⌨️</div>
-                <strong>INPUT</strong>
-                <small>Memasukkan data</small>
+                <div class="flow-step-info">
+                  <strong>INPUT</strong>
+                  <small>Memasukkan data</small>
+                </div>
               </div>
               <div class="flow-arrow">➔</div>
               <div class="flow-step-item">
                 <div class="step-num">3</div>
                 <div class="step-icon">⚙️</div>
-                <strong>PROSES</strong>
-                <small>Mengolah instruksi</small>
+                <div class="flow-step-info">
+                  <strong>PROSES</strong>
+                  <small>Mengolah instruksi</small>
+                </div>
               </div>
               <div class="flow-arrow">➔</div>
               <div class="flow-step-item">
                 <div class="step-num">4</div>
                 <div class="step-icon">🖥️</div>
-                <strong>OUTPUT</strong>
-                <small>Menampilkan hasil</small>
+                <div class="flow-step-info">
+                  <strong>OUTPUT</strong>
+                  <small>Menampilkan hasil</small>
+                </div>
               </div>
               <div class="flow-arrow">➔</div>
               <div class="flow-step-item">
                 <div class="step-num">5</div>
                 <div class="step-icon">💾</div>
-                <strong>PENYIMPANAN</strong>
-                <small>Menyimpan data berkas</small>
+                <div class="flow-step-info">
+                  <strong>PENYIMPANAN</strong>
+                  <small>Menyimpan data berkas</small>
+                </div>
               </div>
             </div>
           </div>
@@ -785,6 +795,7 @@
           <!-- Tabel Ringkasan Sesuai Spesifikasi -->
           <div class="table-container">
             <div class="table-title">📊 Tabel Karakteristik Perangkat Penyimpanan:</div>
+            <div class="table-scroll-hint">👉 Geser tabel ke samping untuk melihat lengkap</div>
             <table class="styled-table">
               <thead>
                 <tr>
@@ -893,17 +904,17 @@
                 <span class="node-icon">💻</span>
                 <strong>Laptop Siswa</strong>
               </div>
-              <div class="nfc-line">➔ Sinyal Wi-Fi ➔</div>
+              <div class="nfc-line"><span class="line-arrow-h">➔ </span><span class="line-arrow-v">⬇ </span>Sinyal Wi-Fi<span class="line-arrow-h"> ➔</span><span class="line-arrow-v"> ⬇</span></div>
               <div class="nfc-node">
                 <span class="node-icon">📡</span>
                 <strong>Router / AP</strong>
               </div>
-              <div class="nfc-line">➔ Kabel ISP ➔</div>
+              <div class="nfc-line"><span class="line-arrow-h">➔ </span><span class="line-arrow-v">⬇ </span>Kabel ISP<span class="line-arrow-h"> ➔</span><span class="line-arrow-v"> ⬇</span></div>
               <div class="nfc-node">
                 <span class="node-icon">📶</span>
                 <strong>Modem</strong>
               </div>
-              <div class="nfc-line">➔ Jaringan Global ➔</div>
+              <div class="nfc-line"><span class="line-arrow-h">➔ </span><span class="line-arrow-v">⬇ </span>Jaringan Global<span class="line-arrow-h"> ➔</span><span class="line-arrow-v"> ⬇</span></div>
               <div class="nfc-node node-web">
                 <span class="node-icon">🌍</span>
                 <strong>INTERNET</strong>

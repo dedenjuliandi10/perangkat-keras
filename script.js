@@ -660,8 +660,13 @@ function navigateTo(targetSectionId) {
 
   // Tutup navbar mobile jika sedang terbuka
   const navEl = document.getElementById("mainNavbar");
+  const toggleBtn = document.getElementById("menuToggleBtn");
   if (navEl && navEl.classList.contains("nav-open")) {
     navEl.classList.remove("nav-open");
+  }
+  if (toggleBtn) {
+    toggleBtn.classList.remove("active");
+    toggleBtn.setAttribute("aria-expanded", "false");
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -669,17 +674,37 @@ function navigateTo(targetSectionId) {
 
 function toggleMobileNav() {
   const navEl = document.getElementById("mainNavbar");
+  const toggleBtn = document.getElementById("menuToggleBtn");
   if (navEl) {
-    navEl.classList.toggle("nav-open");
+    const isOpen = navEl.classList.toggle("nav-open");
+    if (toggleBtn) {
+      toggleBtn.classList.toggle("active", isOpen);
+      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
   }
 }
 
-function scrollToMateri(elementId) {
+function scrollToMateri(elementId, btnElement) {
+  if (AppState.activeSection !== "materi") {
+    navigateTo("materi");
+  }
+
   const el = document.getElementById(elementId);
   if (el) {
-    const yOffset = -90;
+    const header = document.querySelector(".app-header");
+    const headerHeight = header ? header.offsetHeight : 70;
+    const yOffset = -(headerHeight + 14);
     const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
+  // Highlight tombol aktif pada quick-nav
+  if (btnElement) {
+    document.querySelectorAll(".quick-nav-btn").forEach(b => b.classList.remove("active"));
+    btnElement.classList.add("active");
+    if (typeof btnElement.scrollIntoView === "function") {
+      btnElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
   }
 }
 
@@ -1669,4 +1694,58 @@ document.addEventListener("DOMContentLoaded", () => {
       closeHardwareModal();
     }
   });
+
+  // 6. Tutup menu mobile ketika klik di luar navbar
+  document.addEventListener("click", (e) => {
+    const navEl = document.getElementById("mainNavbar");
+    const toggleBtn = document.getElementById("menuToggleBtn");
+    if (navEl && navEl.classList.contains("nav-open")) {
+      if (!navEl.contains(e.target) && !toggleBtn.contains(e.target)) {
+        navEl.classList.remove("nav-open");
+        if (toggleBtn) {
+          toggleBtn.classList.remove("active");
+          toggleBtn.setAttribute("aria-expanded", "false");
+        }
+      }
+    }
+  });
+
+  // 7. Inisialisasi ScrollSpy untuk Quick Nav Sub-Materi
+  initMateriScrollSpy();
 });
+
+function initMateriScrollSpy() {
+  const materiSection = document.getElementById("materi");
+  const quickNavBtns = document.querySelectorAll(".quick-nav-btn");
+  const subMateriArticles = document.querySelectorAll("#materi .materi-card");
+
+  if (!materiSection || !quickNavBtns.length || !subMateriArticles.length) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-15% 0px -65% 0px",
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    if (AppState.activeSection !== "materi") return;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        quickNavBtns.forEach(btn => {
+          const onclickAttr = btn.getAttribute("onclick") || "";
+          if (onclickAttr.includes(`'${id}'`)) {
+            quickNavBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            if (typeof btn.scrollIntoView === "function") {
+              btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            }
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  subMateriArticles.forEach(article => observer.observe(article));
+}
+
