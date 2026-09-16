@@ -76,6 +76,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -356,15 +357,21 @@ button {
 /* Badge Tag */
 .badge-tag {
   display: inline-block;
-  padding: 0.3rem 0.85rem;
+  padding: 0.32rem 0.85rem;
   background: var(--primary-light-bg);
   color: var(--primary-blue);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   border-radius: 999px;
   border: 1px solid rgba(37, 99, 235, 0.2);
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: center;
 }
 
 /* Tombol Standar */
@@ -488,12 +495,15 @@ button {
   border: 1px solid var(--border-light);
   animation: floatAnim 3.5s ease-in-out infinite alternate;
   z-index: 2;
+  pointer-events: none;
+  max-width: 90%;
+  white-space: nowrap;
 }
 
-.bubble-1 { top: 6%; left: 0%; color: var(--primary-blue); animation-delay: 0s; }
-.bubble-2 { top: 12%; right: -2%; color: var(--accent-orange); animation-delay: 0.8s; }
-.bubble-3 { bottom: 22%; right: 4%; color: var(--accent-green); animation-delay: 1.4s; }
-.bubble-4 { bottom: 18%; left: -2%; color: var(--accent-purple); animation-delay: 2.1s; }
+.bubble-1 { top: 6%; left: 4%; color: var(--primary-blue); animation-delay: 0s; }
+.bubble-2 { top: 10%; right: 4%; color: var(--accent-orange); animation-delay: 0.8s; }
+.bubble-3 { bottom: 20%; right: 4%; color: var(--accent-green); animation-delay: 1.4s; }
+.bubble-4 { bottom: 16%; left: 4%; color: var(--accent-purple); animation-delay: 2.1s; }
 
 @keyframes floatAnim {
   0% { transform: translateY(0); }
@@ -543,22 +553,30 @@ button {
   box-shadow: var(--shadow-hover);
 }
 
+.card-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  width: 100%;
+}
+
 .concept-card .card-icon {
-  font-size: 2.4rem;
-  margin-bottom: 0.75rem;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 0;
 }
 
 .concept-card .card-badge {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
   font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 999px;
   background: var(--surface-alt);
   color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  line-height: 1.2;
 }
 
 .concept-card h3 {
@@ -2874,6 +2892,10 @@ button {
     padding: 2rem;
   }
 
+  .floating-bubble {
+    display: none !important;
+  }
+
   .hero-subtitle {
     margin-left: auto;
     margin-right: auto;
@@ -2998,6 +3020,257 @@ button {
   }
 
   /* ===================================================== */
+  /* MENU BERANDA - RESPONSIVE MOBILE FIXES               */
+  /* ===================================================== */
+  .hero-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 1.35rem 1rem;
+    gap: 1.25rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .badge-tag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+    letter-spacing: 0.02em;
+    white-space: normal;
+    word-break: normal;
+    line-height: 1.35;
+    text-align: center;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: clamp(1.45rem, 5.5vw, 1.95rem);
+    line-height: 1.22;
+    margin: 0.5rem 0 0.65rem 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.86rem, 2.8vw, 0.98rem);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    max-width: 100%;
+    padding: 0 0.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  .hero-illustration {
+    width: 100%;
+    max-width: 320px;
+    margin: 0.5rem auto 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .illustration-container {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .hero-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Sembunyikan bubble melayang di mobile agar tidak menembus/menimpa ilustrasi dan teks */
+  .floating-bubble {
+    display: none !important;
+  }
+
+  .section-divider {
+    margin: 1.85rem 0 1.25rem 0;
+    padding: 0 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 4.5vw, 1.65rem);
+    margin-bottom: 0.3rem;
+  }
+
+  .section-subtitle {
+    font-size: clamp(0.84rem, 2.8vw, 0.92rem);
+    padding: 0 0.25rem;
+  }
+
+  /* 3 Kartu Pokok di Beranda */
+  .cards-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .concept-card {
+    padding: 1.25rem 1.1rem;
+    border-radius: var(--radius-lg);
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .card-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.65rem;
+    width: 100%;
+  }
+
+  .concept-card .card-icon {
+    font-size: 2rem;
+  }
+
+  .concept-card .card-badge {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-light);
+  }
+
+  .concept-card h3 {
+    font-size: 1.12rem;
+    margin-bottom: 0.35rem;
+    line-height: 1.35;
+  }
+
+  .concept-card p {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .concept-card .card-footer-tip {
+    font-size: 0.84rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Kotak Tujuan Pembelajaran di Beranda */
+  .objectives-box {
+    padding: 1.25rem 0.95rem;
+    border-radius: var(--radius-lg);
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .obj-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 2px dashed var(--border-light);
+  }
+
+  .obj-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .obj-head h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .obj-head p {
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .obj-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem;
+    margin-bottom: 1.15rem;
+    width: 100%;
+  }
+
+  .obj-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 0.85rem;
+    gap: 0.65rem;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .check-circle {
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .obj-text {
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .obj-text strong {
+    font-size: 0.92rem;
+    line-height: 1.3;
+    margin-bottom: 0.15rem;
+    display: block;
+  }
+
+  .obj-text span {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    display: block;
+  }
+
+  .obj-action {
+    text-align: center;
+    width: 100%;
+  }
+
+  .obj-action .btn {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.88rem;
+    padding: 0.75rem 0.85rem;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.35;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* ===================================================== */
   /* MENU MATERI - RESPONSIVE MOBILE FIXES                 */
   /* ===================================================== */
 
@@ -3012,7 +3285,6 @@ button {
     margin-bottom: 1.5rem;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scroll-snap-type: x proximity;
   }
 
   .materi-quick-nav::-webkit-scrollbar {
@@ -3034,7 +3306,6 @@ button {
     white-space: nowrap;
     padding: 0.5rem 0.85rem;
     font-size: 0.82rem;
-    scroll-snap-align: center;
   }
 
   /* 2. Kartu Materi Utama */
@@ -3379,16 +3650,32 @@ button {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
+  }
+
+  .badge-tag {
+    font-size: 0.65rem;
+    padding: 0.28rem 0.55rem;
+    letter-spacing: 0.02em;
   }
 
   .btn {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-actions {
     flex-direction: column;
     width: 100%;
+  }
+
+  .concept-card {
+    padding: 1.15rem 0.95rem;
+  }
+
+  .objectives-box {
+    padding: 1.15rem 0.85rem;
   }
 
   .materi-card-header h3 {
