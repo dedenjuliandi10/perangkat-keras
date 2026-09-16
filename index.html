@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perangkat Keras Komputer - Media Pembelajaran Informatika SMP/MTs</title>
+  
+  <!-- Google Fonts: Poppins & Nunito (Edukatif, Modern, Ramah Siswa) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- File CSS Terpisah Wajib -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======================================================= -->
+  <!-- HEADER & NAVBAR UTAMA                                   -->
+  <!-- ======================================================= -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Brand Logo -->
+      <div class="brand-logo" onclick="navigateTo('beranda')" role="button" tabindex="0" title="Kembali ke Beranda">
+        <div class="logo-icon-badge">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-subject">INFORMATIKA SMP/MTs</span>
+          <span class="brand-title">Perangkat Keras Komputer</span>
+        </div>
+      </div>
+
+      <!-- Pelacak Progres Belajar Global -->
+      <div class="header-progress-wrap" title="Progres Eksplorasi Materi & Aktivitas Kamu">
+        <div class="progress-labels">
+          <span class="progress-title">⚡ Progres Belajar</span>
+          <span class="progress-percent" id="globalProgressText">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="globalProgressBar" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Tombol Hamburger Mobile -->
+      <button class="menu-toggle" id="menuToggleBtn" aria-label="Buka Menu Navigasi" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- 6 MENU UTAMA (WAJIB & EKSKLUSIF) -->
+      <nav class="main-nav" id="mainNavbar">
+        <ul class="nav-list">
+          <li>
+            <button class="nav-link active" data-target="beranda" onclick="navigateTo('beranda')">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-text">Beranda</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-target="materi" onclick="navigateTo('materi')">
+              <span class="nav-icon">📚</span>
+              <span class="nav-text">Materi</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-target="hardware" onclick="navigateTo('hardware')">
+              <span class="nav-icon">🖥️</span>
+              <span class="nav-text">Hardware</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-target="aktivitas" onclick="navigateTo('aktivitas')">
+              <span class="nav-icon">🎮</span>
+              <span class="nav-text">Aktivitas</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-target="kuis" onclick="navigateTo('kuis')">
+              <span class="nav-icon">📝</span>
+              <span class="nav-text">Kuis</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-target="rangkuman" onclick="navigateTo('rangkuman')">
+              <span class="nav-icon">💡</span>
+              <span class="nav-text">Rangkuman</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ======================================================= -->
+  <!-- KONTEN UTAMA (SINGLE PAGE APPLICATION)                  -->
+  <!-- ======================================================= -->
+  <main class="main-container">
+
+    <!-- ===================================================== -->
+    <!-- 1. MENU BERANDA                                       -->
+    <!-- ===================================================== -->
+    <section id="beranda" class="content-section active">
+      
+      <!-- Hero Banner -->
+      <div class="hero-card">
+        <div class="hero-content">
+          <div class="badge-tag">MODUL PEMBELAJARAN INFORMATIKA • KELAS VII & VIII</div>
+          <h1 class="hero-title">Perangkat Keras Komputer</h1>
+          <p class="hero-subtitle">
+            Kenali bagian-bagian komputer, pahami fungsinya, dan temukan cara kerjanya!
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="navigateTo('materi')">
+              <span>🚀 Mulai Belajar</span>
+            </button>
+            <button class="btn btn-outline" onclick="navigateTo('hardware')">
+              <span>🖥️ Jelajahi Hardware</span>
+            </button>
+            <button class="btn btn-accent" onclick="navigateTo('aktivitas')">
+              <span>🎮 Coba Aktivitas</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ilustrasi Siswa Menggunakan Komputer (SVG Vektor Polished) -->
+        <div class="hero-illustration">
+          <div class="illustration-container">
+            <div class="floating-bubble bubble-1">⌨️ Input</div>
+            <div class="floating-bubble bubble-2">⚙️ Proses</div>
+            <div class="floating-bubble bubble-3">🖥️ Output</div>
+            <div class="floating-bubble bubble-4">💾 Simpan</div>
+            
+            <svg viewBox="0 0 460 320" class="hero-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi Siswa Belajar Perangkat Keras Komputer">
+              <!-- Latar Meja & Lingkungan Belajar -->
+              <rect x="20" y="240" width="420" height="16" rx="8" fill="#cbd5e1"/>
+              <rect x="40" y="256" width="20" height="60" rx="4" fill="#94a3b8"/>
+              <rect x="400" y="256" width="20" height="60" rx="4" fill="#94a3b8"/>
+              
+              <!-- Monitor Desktop Modern -->
+              <rect x="150" y="50" width="180" height="120" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+              <!-- Layar Monitor -->
+              <rect x="160" y="60" width="160" height="100" rx="6" fill="#1e293b"/>
+              <!-- Tampilan Layar: Diagram Hardware -->
+              <rect x="170" y="70" width="40" height="35" rx="4" fill="#0284c7"/>
+              <text x="190" y="93" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">CPU</text>
+              <rect x="220" y="70" width="40" height="35" rx="4" fill="#10b981"/>
+              <text x="240" y="93" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">RAM</text>
+              <rect x="270" y="70" width="40" height="35" rx="4" fill="#f97316"/>
+              <text x="290" y="93" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">SSD</text>
+              <line x1="170" y1="125" x2="310" y2="125" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4"/>
+              <circle cx="200" cy="140" r="8" fill="#8b5cf6"/>
+              <circle cx="240" cy="140" r="8" fill="#38bdf8"/>
+              <circle cx="280" cy="140" r="8" fill="#10b981"/>
+
+              <!-- Kaki Monitor -->
+              <rect x="230" y="170" width="20" height="40" fill="#64748b"/>
+              <path d="M 205 210 L 275 210 L 265 218 L 215 218 Z" fill="#475569"/>
+
+              <!-- CPU Casing / Tower PC -->
+              <rect x="345" y="75" width="75" height="145" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+              <circle cx="382" cy="100" r="6" fill="#38bdf8"/>
+              <line x1="365" y1="125" x2="400" y2="125" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="365" y1="135" x2="400" y2="135" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <rect x="365" y="160" width="35" height="45" rx="4" fill="#0f172a"/>
+              <!-- Lampu LED RGB Casing -->
+              <circle cx="382" cy="182" r="12" fill="#10b981" fill-opacity="0.8"/>
+
+              <!-- Keyboard & Mouse di Meja -->
+              <rect x="160" y="222" width="115" height="14" rx="3" fill="#334155"/>
+              <rect x="285" y="220" width="18" height="24" rx="6" fill="#475569"/>
+              <circle cx="294" cy="227" r="2" fill="#38bdf8"/>
+
+              <!-- Karakter Siswa SMP Ceria (Seragam Putih Biru Dongker) -->
+              <g transform="translate(30, 80)">
+                <!-- Kursi Siswa -->
+                <rect x="35" y="70" width="50" height="90" rx="8" fill="#3b82f6" fill-opacity="0.25"/>
+                <!-- Badan Siswa: Seragam Putih Biru -->
+                <path d="M 40 120 C 40 95 80 95 80 120 L 78 175 L 42 175 Z" fill="#1e3a8a"/>
+                <polygon points="50,96 70,96 60,118" fill="#ffffff"/>
+                <polygon points="57,105 63,105 60,140" fill="#dc2626"/> <!-- Dasi SMP -->
+                
+                <!-- Tangan Siswa Mengetik -->
+                <path d="M 40 125 Q 75 140 115 138" stroke="#fed7aa" stroke-width="12" stroke-linecap="round" fill="none"/>
+                <!-- Kepala & Wajah Siswa -->
+                <circle cx="60" cy="65" r="24" fill="#fed7aa"/>
+                <!-- Rambut Siswa Rapi -->
+                <path d="M 38 65 C 38 40 82 40 82 65 C 75 52 45 52 38 65 Z" fill="#1e293b"/>
+                <!-- Mata Ceria & Senyum -->
+                <circle cx="54" cy="65" r="3" fill="#0f172a"/>
+                <circle cx="68" cy="65" r="3" fill="#0f172a"/>
+                <path d="M 56 75 Q 61 80 66 75" stroke="#c2410c" stroke-width="2" stroke-linecap="round" fill="none"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Kartu Pokok Pembelajaran Sesuai Spesifikasi -->
+      <div class="section-divider">
+        <h2 class="section-title">3 Pilar Pembelajaran Hardware</h2>
+        <p class="section-subtitle">Pelajari dasar-dasar perangkat keras komputer melalui metode yang mudah dan menyenangkan</p>
+      </div>
+
+      <div class="cards-grid-3">
+        
+        <!-- Kartu 1 -->
+        <div class="concept-card card-blue" onclick="navigateTo('hardware')">
+          <div class="card-icon">🖥️</div>
+          <div class="card-badge">Pilar 1</div>
+          <h3>MENGENAL HARDWARE</h3>
+          <p>“Kenali apa itu perangkat keras komputer dan berbagai jenisnya.”</p>
+          <div class="card-footer-tip">
+            <span>Jelajahi 17+ Perangkat ➔</span>
+          </div>
+        </div>
+
+        <!-- Kartu 2 -->
+        <div class="concept-card card-purple" onclick="navigateTo('materi')">
+          <div class="card-icon">⚙️</div>
+          <div class="card-badge">Pilar 2</div>
+          <h3>FUNGSI PERANGKAT</h3>
+          <p>“Pelajari fungsi perangkat input, proses, output, penyimpanan, dan komunikasi.”</p>
+          <div class="card-footer-tip">
+            <span>Buka Modul Materi ➔</span>
+          </div>
+        </div>
+
+        <!-- Kartu 3 -->
+        <div class="concept-card card-green" onclick="navigateTo('aktivitas')">
+          <div class="card-icon">🎮</div>
+          <div class="card-badge">Pilar 3</div>
+          <h3>BELAJAR SAMBIL BERMAIN</h3>
+          <p>“Uji pengetahuanmu melalui aktivitas interaktif dan kuis.”</p>
+          <div class="card-footer-tip">
+            <span>Mulai 4 Aktivitas Game ➔</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bagian Tujuan Pembelajaran Sesuai Spesifikasi -->
+      <div class="objectives-box">
+        <div class="obj-head">
+          <div class="obj-icon">🎯</div>
+          <div>
+            <h3>Tujuan Pembelajaran Siswa</h3>
+            <p>Setelah mempelajari materi dan menyelesaikan aktivitas di website ini, kamu diharapkan mampu:</p>
+          </div>
+        </div>
+
+        <div class="obj-grid">
+          <div class="obj-item">
+            <span class="check-circle">✓</span>
+            <div class="obj-text">
+              <strong>Mengenal perangkat keras komputer</strong>
+              <span>Memahami definisi fisik hardware dan membedakannya dari software.</span>
+            </div>
+          </div>
+
+          <div class="obj-item">
+            <span class="check-circle">✓</span>
+            <div class="obj-text">
+              <strong>Mengetahui fungsi setiap perangkat</strong>
+              <span>Memahami kegunaan spesifik komponen komputer dalam memproses data.</span>
+            </div>
+          </div>
+
+          <div class="obj-item">
+            <span class="check-circle">✓</span>
+            <div class="obj-text">
+              <strong>Mengelompokkan hardware berdasarkan fungsi</strong>
+              <span>Memisahkan perangkat ke dalam kategori Input, Proses, Output, Storage, & Jaringan.</span>
+            </div>
+          </div>
+
+          <div class="obj-item">
+            <span class="check-circle">✓</span>
+            <div class="obj-text">
+              <strong>Mengenali perangkat melalui gambar</strong>
+              <span>Mampu mengidentifikasi bentuk fisik perangkat keras secara akurat.</span>
+            </div>
+          </div>
+
+          <div class="obj-item">
+            <span class="check-circle">✓</span>
+            <div class="obj-text">
+              <strong>Memilih perangkat yang sesuai kebutuhan</strong>
+              <span>Mampu menentukan perangkat yang tepat untuk kegiatan belajar sehari-hari.</span>
+            </div>
+          </div>
+
+          <div class="obj-item">
+            <span class="check-circle">✓</span>
+            <div class="obj-text">
+              <strong>Memahami hubungan antarperangkat komputer</strong>
+              <span>Memahami alur kerja Input ➔ Proses ➔ Output ➔ Penyimpanan secara terpadu.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="obj-action">
+          <button class="btn btn-primary" onclick="navigateTo('materi')">
+            <span>📖 Buka Materi Pembelajaran Sekarang ➔</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- 2. MENU MATERI                                        -->
+    <!-- ===================================================== -->
+    <section id="materi" class="content-section">
+      
+      <div class="section-heading">
+        <div class="badge-tag">MODUL UTAMA</div>
+        <h2>Materi Pembelajaran: Perangkat Keras Komputer</h2>
+        <p>Klik setiap kartu materi untuk memahami konsep, fungsi, dan contoh nyata dalam kehidupan sehari-hari.</p>
+      </div>
+
+      <!-- Quick Navigasi Sub-Materi (A - G) -->
+      <div class="materi-quick-nav">
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-a')">A. Pengertian</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-b')">B. Input</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-c')">C. Proses</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-d')">D. Output</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-e')">E. Penyimpanan</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-f')">F. Komunikasi</button>
+        <button class="quick-nav-btn" onclick="scrollToMateri('materi-g')">G. Cara Kerja</button>
+      </div>
+
+      <!-- SUB-MATERI A: PENGERTIAN PERANGKAT KERAS -->
+      <article id="materi-a" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge">A</div>
+          <div>
+            <h3>Pengertian Perangkat Keras (Hardware)</h3>
+            <span class="materi-tagline">Mengenal wujud fisik komputer dan perbandingannya</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <div class="highlight-quote">
+            <span class="quote-symbol">💬</span>
+            <p>“<strong>Perangkat keras komputer</strong> atau <strong>hardware</strong> adalah bagian komputer yang dapat <strong>dilihat dan disentuh</strong> secara langsung.”</p>
+          </div>
+
+          <div class="compare-grid">
+            <div class="compare-box box-hardware">
+              <div class="comp-head">
+                <span class="comp-icon">🖥️</span>
+                <h4>HARDWARE (Perangkat Keras)</h4>
+              </div>
+              <ul class="comp-points">
+                <li>✨ Memiliki bentuk fisik yang nyata.</li>
+                <li>✋ <strong>Dapat dilihat dan disentuh</strong> langsung dengan tangan.</li>
+                <li>📌 Berperan mengeksekusi perintah secara elektrik/mekanis.</li>
+                <li>💡 <strong>Contoh:</strong> Keyboard, Mouse, Monitor, CPU, Printer, Speaker, Flashdisk, Hard disk.</li>
+              </ul>
+            </div>
+
+            <div class="compare-box box-software">
+              <div class="comp-head">
+                <span class="comp-icon">💿</span>
+                <h4>SOFTWARE (Perangkat Lunak)</h4>
+              </div>
+              <ul class="comp-points">
+                <li>✨ Tidak memiliki bentuk fisik padat.</li>
+                <li>👀 <strong>Hanya dapat dilihat di layar</strong>, tidak bisa disentuh langsung.</li>
+                <li>📌 Kumpulan data, program, atau perintah digital komputer.</li>
+                <li>💡 <strong>Contoh:</strong> Sistem Operasi (Windows), Web Browser (Chrome), Game, Aplikasi Office.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Contoh Kehidupan Sehari-hari -->
+          <div class="real-life-box">
+            <div class="rl-header">
+              <span class="rl-icon">🎒</span>
+              <strong>Contoh Nyata di Sekolah:</strong>
+            </div>
+            <p>
+              “Ketika mengetik tugas sekolah, kita menggunakan <strong>keyboard</strong> untuk memasukkan huruf ke layar. 
+              Keyboard tersebut merupakan <strong>perangkat keras</strong> karena kita dapat memegangnya langsung.”
+            </p>
+          </div>
+
+          <!-- Visualisasi Alur Hubungan Komputer -->
+          <div class="flow-container">
+            <div class="flow-title">🔄 Alur Sederhana Hubungan Komputer & Pengguna:</div>
+            <div class="flow-steps-wrap">
+              <div class="flow-step-item">
+                <div class="step-num">1</div>
+                <div class="step-icon">👤</div>
+                <strong>PENGGUNA</strong>
+                <small>Memberi perintah/data</small>
+              </div>
+              <div class="flow-arrow">➔</div>
+              <div class="flow-step-item">
+                <div class="step-num">2</div>
+                <div class="step-icon">⌨️</div>
+                <strong>INPUT</strong>
+                <small>Memasukkan data</small>
+              </div>
+              <div class="flow-arrow">➔</div>
+              <div class="flow-step-item">
+                <div class="step-num">3</div>
+                <div class="step-icon">⚙️</div>
+                <strong>PROSES</strong>
+                <small>Mengolah instruksi</small>
+              </div>
+              <div class="flow-arrow">➔</div>
+              <div class="flow-step-item">
+                <div class="step-num">4</div>
+                <div class="step-icon">🖥️</div>
+                <strong>OUTPUT</strong>
+                <small>Menampilkan hasil</small>
+              </div>
+              <div class="flow-arrow">➔</div>
+              <div class="flow-step-item">
+                <div class="step-num">5</div>
+                <div class="step-icon">💾</div>
+                <strong>PENYIMPANAN</strong>
+                <small>Menyimpan data berkas</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUB-MATERI B: PERANGKAT INPUT -->
+      <article id="materi-b" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge badge-input">B</div>
+          <div>
+            <h3>Perangkat Input (Input Device)</h3>
+            <span class="materi-tagline">Pintu masuk data dan instruksi dari kita ke komputer</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <div class="highlight-quote">
+            <span class="quote-symbol">📥</span>
+            <p>“<strong>Perangkat input</strong> adalah perangkat yang digunakan untuk <strong>memasukkan data atau perintah</strong> ke komputer.”</p>
+          </div>
+
+          <div class="hardware-subgrid">
+            
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">⌨️</span>
+                <h4>Keyboard</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Digunakan untuk memasukkan huruf, angka, simbol, dan perintah teks.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mengetik tugas sekolah atau kode pemrograman.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🖱️</span>
+                <h4>Mouse</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Menggerakkan penunjuk (kursor/pointer) dan memilih menu di layar.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mengklik ikon aplikasi atau menggambar.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🎤</span>
+                <h4>Microphone</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Memasukkan sinyal suara ke dalam komputer.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Berbicara saat belajar online / zoom kelas.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">📷</span>
+                <h4>Webcam</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Menangkap rekaman gambar dan video pengguna secara langsung.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Video call pembelajaran jarak jauh.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🖊️</span>
+                <h4>Scanner</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Memindai dokumen fisik kertas atau foto menjadi gambar digital.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mengunggah berkas piagam atau fotokopi tugas.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🎮</span>
+                <h4>Joystick / Gamepad</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Memasukkan perintah kendali arah dan aksi dalam permainan/simulasi.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mengontrol karakter game edukasi.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">📱</span>
+                <h4>Touchscreen</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Layar sentuh yang menerima input langsung dari sentuhan jari siswa.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Menavigasi tablet belajar atau smartphone.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pertanyaan Interaktif Materi Input Sesuai Spesifikasi -->
+          <div class="interactive-question-box">
+            <div class="iq-head">
+              <span class="iq-icon">❓</span>
+              <h4>Uji Pemahaman Cepat:</h4>
+            </div>
+            <p class="iq-question">“Perangkat apa yang digunakan untuk mengetik teks dan angka ke komputer?”</p>
+            
+            <div class="iq-options" id="materiInputOptions">
+              <button class="iq-btn" onclick="checkMateriQuickQuiz('materiInput', 'A')">A. Monitor</button>
+              <button class="iq-btn" onclick="checkMateriQuickQuiz('materiInput', 'B')">B. Keyboard</button>
+              <button class="iq-btn" onclick="checkMateriQuickQuiz('materiInput', 'C')">C. Speaker</button>
+              <button class="iq-btn" onclick="checkMateriQuickQuiz('materiInput', 'D')">D. Printer</button>
+            </div>
+
+            <div class="iq-feedback" id="materiInputFeedback" style="display: none;"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUB-MATERI C: PERANGKAT PROSES -->
+      <article id="materi-c" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge badge-process">C</div>
+          <div>
+            <h3>Perangkat Proses (Processing Device)</h3>
+            <span class="materi-tagline">Pusat komputasi dan pengolahan seluruh instruksi</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <div class="highlight-quote">
+            <span class="quote-symbol">⚙️</span>
+            <p>“<strong>Perangkat proses</strong> adalah perangkat yang <strong>mengolah data</strong> dan menjalankan perintah dari pengguna.”</p>
+          </div>
+
+          <div class="process-components-grid">
+            
+            <div class="proc-card">
+              <div class="proc-head">
+                <span class="proc-icon">🧠</span>
+                <div>
+                  <h4>CPU / Processor</h4>
+                  <span class="proc-subtitle">Central Processing Unit</span>
+                </div>
+              </div>
+              <p class="proc-explain">
+                <strong>CPU dapat dianggap sebagai otak komputer</strong> yang menjalankan berbagai perintah dan operasi matematika logika dengan kecepatan sangat tinggi.
+              </p>
+              <div class="analogy-badge">💡 Analogi: Seperti otak manusia yang berpikir dan mengambil keputusan.</div>
+            </div>
+
+            <div class="proc-card">
+              <div class="proc-head">
+                <span class="proc-icon">⚡</span>
+                <div>
+                  <h4>RAM</h4>
+                  <span class="proc-subtitle">Random Access Memory</span>
+                </div>
+              </div>
+              <p class="proc-explain">
+                <strong>RAM adalah tempat penyimpanan sementara</strong> yang membantu komputer menjalankan program dengan lancar. Data di RAM hilang saat komputer dimatikan (bersifat volatile).
+              </p>
+              <div class="analogy-badge">💡 Analogi: Seperti meja belajar tempat kita membuka buku yang sedang kita baca.</div>
+            </div>
+
+            <div class="proc-card">
+              <div class="proc-head">
+                <span class="proc-icon">🎨</span>
+                <div>
+                  <h4>GPU / VGA Card</h4>
+                  <span class="proc-subtitle">Graphics Processing Unit</span>
+                </div>
+              </div>
+              <p class="proc-explain">
+                <strong>GPU bertugas khusus mengolah tampilan grafis, video, dan gambar</strong> agar visual 3D, animasi, dan video bergerak dengan jernih dan mulus.
+              </p>
+              <div class="analogy-badge">💡 Analogi: Seperti seniman visual yang melukis ribuan piksel warna tiap detik.</div>
+            </div>
+
+            <div class="proc-card">
+              <div class="proc-head">
+                <span class="proc-icon">🖲️</span>
+                <div>
+                  <h4>Motherboard</h4>
+                  <span class="proc-subtitle">Mainboard / Papan Utama</span>
+                </div>
+              </div>
+              <p class="proc-explain">
+                <strong>Motherboard adalah papan utama</strong> tempat semua komponen komputer (CPU, RAM, VGA, Penyimpanan) terpasang dan saling berkomunikasi lewat jalur sirkuit listrik.
+              </p>
+              <div class="analogy-badge">💡 Analogi: Seperti jaringan jalan raya yang menghubungkan semua gedung di kota.</div>
+            </div>
+
+          </div>
+
+          <!-- Visualisasi Alur Proses -->
+          <div class="process-flow-visual">
+            <div class="pf-block pf-input">
+              <span class="pf-badge">INPUT</span>
+              <span class="pf-icons">⌨️ 🖱️</span>
+              <strong>Keyboard / Mouse</strong>
+              <small>Pengguna mengetik/mengklik</small>
+            </div>
+            <div class="pf-arrow">
+              <span>Instruksi Masuk</span>
+              <div class="arrow-line">➔</div>
+            </div>
+            <div class="pf-block pf-center">
+              <span class="pf-badge pf-badge-hot">PROCESS</span>
+              <span class="pf-icons">🧠 ⚡ 🎨</span>
+              <strong>CPU / RAM / GPU</strong>
+              <small>Mengolah & Menghitung data</small>
+            </div>
+            <div class="pf-arrow">
+              <span>Hasil Siap</span>
+              <div class="arrow-line">➔</div>
+            </div>
+            <div class="pf-block pf-output">
+              <span class="pf-badge">OUTPUT</span>
+              <span class="pf-icons">🖥️ 🔊</span>
+              <strong>Monitor / Speaker</strong>
+              <small>Menampilkan visual & suara</small>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUB-MATERI D: PERANGKAT OUTPUT -->
+      <article id="materi-d" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge badge-output">D</div>
+          <div>
+            <h3>Perangkat Output (Output Device)</h3>
+            <span class="materi-tagline">Media penyampai hasil pengolahan data kepada kita</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <div class="highlight-quote">
+            <span class="quote-symbol">📤</span>
+            <p>“<strong>Perangkat output</strong> adalah perangkat yang digunakan untuk <strong>menampilkan atau menghasilkan informasi</strong> dari komputer.”</p>
+          </div>
+
+          <div class="hardware-subgrid">
+            
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🖥️</span>
+                <h4>Monitor</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Menampilkan gambar, teks, video, dan antarmuka informasi dari komputer.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Melihat hasil ketikan tugas atau menonton video materi.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🖨️</span>
+                <h4>Printer</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Mencetak tulisan, diagram, atau gambar digital ke media kertas fisik (hardcopy).</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mencetak lembar kerja siswa atau makalah tugas.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🔊</span>
+                <h4>Speaker</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Mengeluarkan gelombang suara hasil pengolahan audio komputer.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mendengarkan penjelasan guru atau audio edukasi di kelas.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">🎧</span>
+                <h4>Headset / Earphone</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Mengeluarkan suara khusus untuk telinga satu pengguna secara jernih.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Mendengarkan audio saat ujian listening bahasa di lab.</div>
+              </div>
+            </div>
+
+            <div class="device-mini-card">
+              <div class="dmc-head">
+                <span class="dmc-icon">📽️</span>
+                <h4>Projector (InFocus)</h4>
+              </div>
+              <div class="dmc-body">
+                <p><strong>Fungsi:</strong> Memproyeksikan tampilan layar monitor ke layar kain/tembok besar.</p>
+                <div class="dmc-example">💡 <strong>Contoh:</strong> Guru mempresentasikan slide materi di depan kelas.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <!-- SUB-MATERI E: PERANGKAT PENYIMPANAN -->
+      <article id="materi-e" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge badge-storage">E</div>
+          <div>
+            <h3>Perangkat Penyimpanan (Storage Device)</h3>
+            <span class="materi-tagline">Tempat menyimpan berkas dan file agar aman & dapat dibuka kembali</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <div class="highlight-quote">
+            <span class="quote-symbol">💾</span>
+            <p>“<strong>Perangkat penyimpanan</strong> digunakan untuk <strong>menyimpan data</strong> agar dapat digunakan kembali secara permanen (non-volatile).”</p>
+          </div>
+
+          <!-- Pembedaan Internal vs Eksternal -->
+          <div class="storage-types-dual">
+            <div class="storage-col">
+              <div class="sc-head sc-internal">
+                <span class="sc-icon">🔒</span>
+                <h4>Penyimpanan Internal</h4>
+                <small>Terpasang di dalam badan komputer/laptop</small>
+              </div>
+              <ul class="sc-list">
+                <li><strong>HDD (Hard Disk Drive):</strong> Menggunakan piringan magnetik berputar, kapasitas besar dengan harga terjangkau.</li>
+                <li><strong>SSD (Solid State Drive):</strong> Menggunakan chip memori flash berkecepatan sangat tinggi, tahan guncangan, dan hemat daya.</li>
+              </ul>
+            </div>
+
+            <div class="storage-col">
+              <div class="sc-head sc-external">
+                <span class="sc-icon">🎒</span>
+                <h4>Penyimpanan Eksternal</h4>
+                <small>Mudah dicabut dan dibawa bepergian</small>
+              </div>
+              <ul class="sc-list">
+                <li><strong>Flashdisk (USB Drive):</strong> Praktis dimasukkan saku untuk memindahkan tugas sekolah antar komputer.</li>
+                <li><strong>Memory Card (MicroSD):</strong> Kartu kecil untuk smartphone, kamera digital, atau tablet.</li>
+                <li><strong>CD / DVD:</strong> Media penyimpanan piringan optik yang dibaca menggunakan sinar laser.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tabel Ringkasan Sesuai Spesifikasi -->
+          <div class="table-container">
+            <div class="table-title">📊 Tabel Karakteristik Perangkat Penyimpanan:</div>
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Ikon</th>
+                  <th>Perangkat</th>
+                  <th>Kategori</th>
+                  <th>Fungsi Pokok</th>
+                  <th>Keunggulan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>🖴</td>
+                  <td><strong>HDD</strong></td>
+                  <td><span class="badge-pill badge-primary">Internal</span></td>
+                  <td>Menyimpan data sistem & berkas</td>
+                  <td>Kapasitas sangat besar (1 TB - 4 TB), harga ekonomis</td>
+                </tr>
+                <tr>
+                  <td>⚡</td>
+                  <td><strong>SSD</strong></td>
+                  <td><span class="badge-pill badge-primary">Internal</span></td>
+                  <td>Menyimpan data dengan akses cepat</td>
+                  <td>Booting komputer hitungan detik, tanpa komponen berputar</td>
+                </tr>
+                <tr>
+                  <td>🔌</td>
+                  <td><strong>Flashdisk</strong></td>
+                  <td><span class="badge-pill badge-accent">Eksternal</span></td>
+                  <td>Menyimpan dan memindahkan data</td>
+                  <td>Kecil, praktis dicolok ke port USB mana saja</td>
+                </tr>
+                <tr>
+                  <td>🃏</td>
+                  <td><strong>Memory Card</strong></td>
+                  <td><span class="badge-pill badge-accent">Eksternal</span></td>
+                  <td>Menyimpan data pada perangkat tertentu</td>
+                  <td>Ukuran sangat mungil, cocok untuk smartphone & kamera</td>
+                </tr>
+                <tr>
+                  <td>💿</td>
+                  <td><strong>CD / DVD</strong></td>
+                  <td><span class="badge-pill badge-accent">Eksternal</span></td>
+                  <td>Menyimpan data menggunakan media optik</td>
+                  <td>Bagus untuk arsip master musik/software permanen</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUB-MATERI F: PERANGKAT KOMUNIKASI & JARINGAN -->
+      <article id="materi-f" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge badge-network">F</div>
+          <div>
+            <h3>Perangkat Komunikasi / Jaringan (Networking)</h3>
+            <span class="materi-tagline">Jembatan penghubung antar komputer dan dunia internet</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <div class="highlight-quote">
+            <span class="quote-symbol">🌐</span>
+            <p>“<strong>Perangkat komunikasi atau jaringan</strong> digunakan untuk <strong>menghubungkan komputer</strong> dengan perangkat lain atau jaringan internet.”</p>
+          </div>
+
+          <div class="network-cards-grid">
+            <div class="net-card">
+              <div class="net-icon">📶</div>
+              <h4>Modem</h4>
+              <p>Mengubah sinyal analog dari penyedia layanan internet menjadi sinyal digital yang dipahami komputer (dan sebaliknya).</p>
+            </div>
+
+            <div class="net-card">
+              <div class="net-icon">📡</div>
+              <h4>Router</h4>
+              <p>Mengatur rute lalu lintas data dan menghubungkan beberapa perangkat ke internet (sering memancarkan Wi-Fi).</p>
+            </div>
+
+            <div class="net-card">
+              <div class="net-icon">🔀</div>
+              <h4>Switch</h4>
+              <p>Menghubungkan banyak komputer dalam satu jaringan lokal (LAN) di laboratorium komputer sekolah menggunakan kabel.</p>
+            </div>
+
+            <div class="net-card">
+              <div class="net-icon">📻</div>
+              <h4>Access Point</h4>
+              <p>Memancarkan sinyal nirkabel (Wi-Fi) agar laptop dan gawai siswa dapat terhubung ke jaringan tanpa kabel.</p>
+            </div>
+
+            <div class="net-card">
+              <div class="net-icon">🔌</div>
+              <h4>LAN Card / NIC</h4>
+              <p>Kartu antarmuka pada komputer tempat mencolokkan kabel jaringan (port RJ-45) agar dapat berkomunikasi.</p>
+            </div>
+          </div>
+
+          <!-- Contoh Alur Koneksi Sesuai Spesifikasi -->
+          <div class="network-flow-card">
+            <div class="nfc-title">📶 Alur Contoh Terhubung ke Internet:</div>
+            <div class="nfc-steps">
+              <div class="nfc-node">
+                <span class="node-icon">💻</span>
+                <strong>Laptop Siswa</strong>
+              </div>
+              <div class="nfc-line">➔ Sinyal Wi-Fi ➔</div>
+              <div class="nfc-node">
+                <span class="node-icon">📡</span>
+                <strong>Router / AP</strong>
+              </div>
+              <div class="nfc-line">➔ Kabel ISP ➔</div>
+              <div class="nfc-node">
+                <span class="node-icon">📶</span>
+                <strong>Modem</strong>
+              </div>
+              <div class="nfc-line">➔ Jaringan Global ➔</div>
+              <div class="nfc-node node-web">
+                <span class="node-icon">🌍</span>
+                <strong>INTERNET</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUB-MATERI G: CARA KERJA PERANGKAT KERAS -->
+      <article id="materi-g" class="materi-card">
+        <div class="materi-card-header">
+          <div class="letter-badge badge-workflow">G</div>
+          <div>
+            <h3>Cara Kerja Perangkat Keras Komputer</h3>
+            <span class="materi-tagline">Bagaimana keempat pilar perangkat bekerja sama tanpa henti</span>
+          </div>
+        </div>
+
+        <div class="materi-body">
+          <p class="materi-intro-text">
+            Seluruh perangkat keras komputer bekerja bersama dalam satu siklus yang harmonis: 
+            <strong>INPUT ➔ PROCESS ➔ OUTPUT ➔ STORAGE</strong>.
+          </p>
+
+          <!-- Kasus Siswa Mengetik Tugas Sesuai Spesifikasi -->
+          <div class="case-study-box">
+            <div class="cs-badge">📖 Contoh Skenario Nyata: Siswa Mengetik Tugas Makalah</div>
+            
+            <div class="cs-timeline">
+              <div class="cs-item">
+                <div class="cs-dot">1</div>
+                <div class="cs-content">
+                  <div class="cs-device"><span class="cs-ico">⌨️</span> <strong>Keyboard (Input)</strong></div>
+                  <p>Siswa menekan tombol huruf "B-U-K-U" pada papan ketik.</p>
+                </div>
+              </div>
+
+              <div class="cs-item">
+                <div class="cs-dot">2</div>
+                <div class="cs-content">
+                  <div class="cs-device"><span class="cs-ico">🧠</span> <strong>CPU & RAM (Proses)</strong></div>
+                  <p>CPU menerjemahkan sinyal listrik menjadi kode teks dan RAM menyimpannya sementara di memori kerja.</p>
+                </div>
+              </div>
+
+              <div class="cs-item">
+                <div class="cs-dot">3</div>
+                <div class="cs-content">
+                  <div class="cs-device"><span class="cs-ico">🖥️</span> <strong>Monitor (Output)</strong></div>
+                  <p>Layar monitor langsung menampilkan kata "BUKU" dalam sekejap mata.</p>
+                </div>
+              </div>
+
+              <div class="cs-item">
+                <div class="cs-dot">4</div>
+                <div class="cs-content">
+                  <div class="cs-device"><span class="cs-ico">💾</span> <strong>SSD / Flashdisk (Storage)</strong></div>
+                  <p>Ketika siswa menekan tombol simpan (Save), berkas tugas tersimpan rapi di dalam SSD agar tidak hilang.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tombol Interaktif ke Aktivitas 4 -->
+            <div class="cs-action">
+              <button class="btn btn-accent" onclick="openSimulationActivity()">
+                <span>⚡ Coba Simulasi Alur Kerja Ini di Menu Aktivitas! ➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- 3. MENU HARDWARE (KATALOG EKSPLORASI)                 -->
+    <!-- ===================================================== -->
+    <section id="hardware" class="content-section">
+      
+      <div class="section-heading">
+        <div class="badge-tag">KATALOG LENGKAP</div>
+        <h2>Kenali Perangkat Keras Komputer</h2>
+        <p>Klik salah satu kartu untuk melihat fungsi mendalam, kategori, contoh penggunaan, serta fakta menariknya!</p>
+      </div>
+
+      <!-- Filter Kategori Hardware -->
+      <div class="hardware-filter-bar">
+        <button class="filter-btn active" data-filter="all" onclick="filterHardware('all')">
+          <span>Semua (17+)</span>
+        </button>
+        <button class="filter-btn" data-filter="input" onclick="filterHardware('input')">
+          <span>📥 Input</span>
+        </button>
+        <button class="filter-btn" data-filter="process" onclick="filterHardware('process')">
+          <span>⚙️ Proses</span>
+        </button>
+        <button class="filter-btn" data-filter="output" onclick="filterHardware('output')">
+          <span>📤 Output</span>
+        </button>
+        <button class="filter-btn" data-filter="storage" onclick="filterHardware('storage')">
+          <span>💾 Penyimpanan</span>
+        </button>
+        <button class="filter-btn" data-filter="network" onclick="filterHardware('network')">
+          <span>🌐 Jaringan</span>
+        </button>
+      </div>
+
+      <!-- Grid Kartu Hardware (Diisi Otomatis oleh script.js) -->
+      <div class="hardware-grid" id="hardwareGridContainer">
+        <!-- Kartu-kartu perangkat keras akan dirender di sini via JS -->
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- 4. MENU AKTIVITAS                                     -->
+    <!-- ===================================================== -->
+    <section id="aktivitas" class="content-section">
+      
+      <div class="section-heading">
+        <div class="badge-tag">BELAJAR SAMBIL BERMAIN</div>
+        <h2>Aktivitas Interaktif Siswa</h2>
+        <p>Asah kemampuan pemahaman perangkat keras komputermu lewat 4 game edukatif interaktif!</p>
+      </div>
+
+      <!-- Tab Pemilih Aktivitas (4 Aktivitas Utama) -->
+      <div class="activity-tab-nav">
+        <button class="act-tab-btn active" data-act="act1" onclick="switchActivityTab('act1')">
+          <span class="act-num">1</span>
+          <span class="act-text">🧩 Jodohkan Perangkat</span>
+        </button>
+        <button class="act-tab-btn" data-act="act2" onclick="switchActivityTab('act2')">
+          <span class="act-num">2</span>
+          <span class="act-text">📦 Kelompokkan Hardware</span>
+        </button>
+        <button class="act-tab-btn" data-act="act3" onclick="switchActivityTab('act3')">
+          <span class="act-num">3</span>
+          <span class="act-text">🕵️ Tebak Perangkat</span>
+        </button>
+        <button class="act-tab-btn" data-act="act4" onclick="switchActivityTab('act4')">
+          <span class="act-num">4</span>
+          <span class="act-text">⚡ Simulasi Komputer</span>
+        </button>
+      </div>
+
+      <!-- =================================================== -->
+      <!-- AKTIVITAS 1: JODOHKAN PERANGKAT                     -->
+      <!-- =================================================== -->
+      <div id="act1-pane" class="activity-pane active">
+        <div class="act-banner">
+          <div class="ab-info">
+            <h3>Aktivitas 1 — Jodohkan Perangkat dengan Fungsinya</h3>
+            <p><strong>Cara Bermain:</strong> Klik satu nama perangkat di kolom kiri, lalu klik fungsi yang tepat di kolom kanan. Pasangan yang benar akan berwarna hijau!</p>
+          </div>
+          <div class="ab-score">
+            <span class="score-label">Skor Terkumpul</span>
+            <span class="score-value" id="act1Score">0 / 100</span>
+          </div>
+        </div>
+
+        <div class="matching-game-board">
+          <!-- Kolom Kiri: Perangkat -->
+          <div class="matching-col" id="matchColLeft">
+            <div class="col-header-tag">🖥️ Nama Perangkat (Klik Satu)</div>
+            <!-- Item tombol kiri dirender oleh JS -->
+          </div>
+
+          <!-- Kolom Kanan: Fungsi Perangkat -->
+          <div class="matching-col" id="matchColRight">
+            <div class="col-header-tag">🎯 Fungsi Perangkat (Klik Pasangannya)</div>
+            <!-- Item tombol kanan dirender oleh JS acak -->
+          </div>
+        </div>
+
+        <!-- Umpan Balik & Tombol Kontrol Aktivitas 1 -->
+        <div class="activity-controls">
+          <div class="act-status-msg" id="act1StatusMsg">Pilih satu perangkat di sebelah kiri, lalu pilih fungsinya di sebelah kanan.</div>
+          <div class="act-buttons">
+            <button class="btn btn-primary" onclick="checkAllMatching()">
+              <span>✅ Periksa Hasil</span>
+            </button>
+            <button class="btn btn-outline" onclick="resetMatchingActivity()">
+              <span>🔄 Ulangi Aktivitas</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================== -->
+      <!-- AKTIVITAS 2: KELOMPOKKAN HARDWARE (DRAG & DROP)      -->
+      <!-- =================================================== -->
+      <div id="act2-pane" class="activity-pane">
+        <div class="act-banner">
+          <div class="ab-info">
+            <h3>Aktivitas 2 — Kelompokkan Hardware ke Kategorinya</h3>
+            <p><strong>Cara Bermain:</strong> Seret (drag & drop) atau klik perangkat di bawah, lalu tempatkan ke dalam kotak kategori yang sesuai!</p>
+          </div>
+          <div class="ab-score">
+            <span class="score-label">Status Terkelompok</span>
+            <span class="score-value" id="act2ProgressCount">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- Kotak Bank Perangkat Siap Seret / Pilih -->
+        <div class="drag-bank-section">
+          <div class="bank-title">📦 Perangkat yang Tersedia (Tarik atau Klik untuk Memilih):</div>
+          <div class="drag-items-container" id="dragItemsBank">
+            <!-- Item hardware untuk diseret dirender via JS -->
+          </div>
+        </div>
+
+        <!-- 5 Drop Zones Kategori Sesuai Spesifikasi -->
+        <div class="drop-zones-grid">
+          
+          <div class="drop-zone" data-category="input" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'input')" onclick="handleZoneClick('input')">
+            <div class="dz-header dz-input">
+              <span class="dz-icon">📥</span>
+              <h4>INPUT</h4>
+              <small>Memasukkan data</small>
+            </div>
+            <div class="dz-content" id="zone-input"></div>
+          </div>
+
+          <div class="drop-zone" data-category="process" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'process')" onclick="handleZoneClick('process')">
+            <div class="dz-header dz-process">
+              <span class="dz-icon">⚙️</span>
+              <h4>PROCESS</h4>
+              <small>Mengolah instruksi</small>
+            </div>
+            <div class="dz-content" id="zone-process"></div>
+          </div>
+
+          <div class="drop-zone" data-category="output" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'output')" onclick="handleZoneClick('output')">
+            <div class="dz-header dz-output">
+              <span class="dz-icon">📤</span>
+              <h4>OUTPUT</h4>
+              <small>Menampilkan hasil</small>
+            </div>
+            <div class="dz-content" id="zone-output"></div>
+          </div>
+
+          <div class="drop-zone" data-category="storage" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'storage')" onclick="handleZoneClick('storage')">
+            <div class="dz-header dz-storage">
+              <span class="dz-icon">💾</span>
+              <h4>STORAGE</h4>
+              <small>Menyimpan data</small>
+            </div>
+            <div class="dz-content" id="zone-storage"></div>
+          </div>
+
+          <div class="drop-zone" data-category="network" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'network')" onclick="handleZoneClick('network')">
+            <div class="dz-header dz-network">
+              <span class="dz-icon">🌐</span>
+              <h4>NETWORK</h4>
+              <small>Jaringan & komunikasi</small>
+            </div>
+            <div class="dz-content" id="zone-network"></div>
+          </div>
+
+        </div>
+
+        <!-- Tombol Periksa & Umpan Balik Aktivitas 2 -->
+        <div class="activity-controls">
+          <div class="act-status-msg" id="act2FeedbackMsg">Tempatkan semua 10 perangkat ke keranjang kategori yang benar, lalu klik "Periksa Jawaban".</div>
+          <div class="act-buttons">
+            <button class="btn btn-primary" onclick="checkCategorizationAnswers()">
+              <span>✅ Periksa Jawaban</span>
+            </button>
+            <button class="btn btn-outline" onclick="resetCategorizationActivity()">
+              <span>🔄 Ulangi Aktivitas</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================== -->
+      <!-- AKTIVITAS 3: TEBAK PERANGKAT (10 CLUE QUESTIONS)    -->
+      <!-- =================================================== -->
+      <div id="act3-pane" class="activity-pane">
+        <div class="act-banner">
+          <div class="ab-info">
+            <h3>Aktivitas 3 — Tebak Siapakah Aku?</h3>
+            <p><strong>Cara Bermain:</strong> Baca ciri-ciri dan petunjuk fungsi perangkat secara cermat, lalu pilih nama perangkat yang paling tepat!</p>
+          </div>
+          <div class="ab-score">
+            <span class="score-label">Pertanyaan</span>
+            <span class="score-value" id="tebakProgressText">1 / 10</span>
+          </div>
+        </div>
+
+        <div class="tebak-box" id="tebakCardContainer">
+          <div class="tebak-badge-num" id="tebakClueBadge">Petunjuk #1</div>
+          
+          <div class="tebak-clue-bubble">
+            <span class="tc-quote">🕵️‍♂️</span>
+            <h3 class="tc-text" id="tebakClueText">“Aku digunakan untuk mengetik huruf dan angka ke dalam komputer. Siapakah aku?”</h3>
+          </div>
+
+          <div class="tebak-options-grid" id="tebakOptionsGrid">
+            <!-- 4 Opsi Pilihan A, B, C, D di-render via JS -->
+          </div>
+
+          <div class="tebak-explanation" id="tebakExplanation" style="display: none;">
+            <div class="te-title" id="tebakExpTitle">Penjelasan:</div>
+            <p id="tebakExpText"></p>
+          </div>
+
+          <div class="tebak-nav-row">
+            <button class="btn btn-primary" id="tebakNextBtn" onclick="nextTebakQuestion()" style="display: none;">
+              <span>Pertanyaan Berikutnya ➔</span>
+            </button>
+            <button class="btn btn-outline" id="tebakRestartBtn" onclick="resetTebakActivity()">
+              <span>🔄 Mulai dari Awal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================== -->
+      <!-- AKTIVITAS 4: SIMULASI KOMPUTER BEKERJA              -->
+      <!-- =================================================== -->
+      <div id="act4-pane" class="activity-pane">
+        <div class="act-banner">
+          <div class="ab-info">
+            <h3>Aktivitas 4 — Simulasi Interaktif: Bagaimana Komputer Bekerja?</h3>
+            <p>Ketik kata di bawah (misalnya: <strong>INFORMATIKA</strong>) dan klik "Jalankan Simulasi". Perhatikan aliran pulsa data melintasi setiap perangkat!</p>
+          </div>
+          <div class="ab-score">
+            <span class="score-label">Mode Simulasi</span>
+            <span class="score-value">Live Circuit</span>
+          </div>
+        </div>
+
+        <!-- Kontrol Input Simulasi -->
+        <div class="sim-input-bar">
+          <label for="simTextInput" class="sim-label">✏️ Masukkan Teks / Perintah Siswa:</label>
+          <div class="sim-input-group">
+            <input type="text" id="simTextInput" class="sim-input" value="INFORMATIKA" placeholder="Ketik kata bebas (contoh: TUGAS SMP)..." maxlength="25">
+            <button class="btn btn-primary" id="btnRunSim" onclick="runComputerSimulation()">
+              <span>⚡ Jalankan Simulasi Alur!</span>
+            </button>
+            <button class="btn btn-outline" onclick="resetComputerSimulation()">
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Papan Rangkaian Komputer (Simulasi Visual) -->
+        <div class="sim-workstation">
+          
+          <!-- Tahap 1: Input -->
+          <div class="sim-stage" id="stageInput">
+            <div class="stage-tag">1. TAHAP INPUT</div>
+            <div class="sim-node" id="nodeKeyboard" onclick="inspectSimDevice('keyboard')">
+              <span class="node-ico">⌨️</span>
+              <strong>Keyboard</strong>
+              <small>Memasukkan Karakter</small>
+              <div class="node-signal"></div>
+            </div>
+            <div class="sim-node" id="nodeMouse" onclick="inspectSimDevice('mouse')">
+              <span class="node-ico">🖱️</span>
+              <strong>Mouse</strong>
+              <small>Memilih Koordinat</small>
+              <div class="node-signal"></div>
+            </div>
+          </div>
+
+          <!-- Jalur Bus Data 1 -->
+          <div class="sim-path-col">
+            <div class="sim-bus" id="bus1">
+              <div class="data-packet" id="packet1">0101</div>
+            </div>
+            <span class="path-label">Kabel / Bus Data</span>
+          </div>
+
+          <!-- Tahap 2: Proses & Memori Kerja -->
+          <div class="sim-stage" id="stageProcess">
+            <div class="stage-tag">2. TAHAP PROSES</div>
+            <div class="sim-node sim-node-special" id="nodeCPU" onclick="inspectSimDevice('cpu')">
+              <span class="node-ico">🧠</span>
+              <strong>CPU Processor</strong>
+              <small>Mengolah Kode Huruf</small>
+              <div class="node-signal"></div>
+            </div>
+            <div class="sim-node" id="nodeRAM" onclick="inspectSimDevice('ram')">
+              <span class="node-ico">⚡</span>
+              <strong>RAM</strong>
+              <small>Memori Kerja Aktif</small>
+              <div class="node-signal"></div>
+            </div>
+          </div>
+
+          <!-- Jalur Bus Data 2 -->
+          <div class="sim-path-col">
+            <div class="sim-bus" id="bus2">
+              <div class="data-packet" id="packet2">RGB/PIXEL</div>
+            </div>
+            <span class="path-label">Sinyal Video/Data</span>
+          </div>
+
+          <!-- Tahap 3: Output -->
+          <div class="sim-stage" id="stageOutput">
+            <div class="stage-tag">3. TAHAP OUTPUT</div>
+            <div class="sim-node" id="nodeMonitor" onclick="inspectSimDevice('monitor')">
+              <span class="node-ico">🖥️</span>
+              <strong>Monitor</strong>
+              <div class="monitor-screen-preview" id="simMonitorScreen">
+                <span class="screen-cursor">_</span>
+              </div>
+              <div class="node-signal"></div>
+            </div>
+            <div class="sim-node" id="nodeSpeaker" onclick="inspectSimDevice('speaker')">
+              <span class="node-ico">🔊</span>
+              <strong>Speaker</strong>
+              <small>Efek Suara Audio</small>
+              <div class="node-signal"></div>
+            </div>
+          </div>
+
+          <!-- Tahap 4: Storage -->
+          <div class="sim-stage" id="stageStorage">
+            <div class="stage-tag">4. TAHAP STORAGE</div>
+            <div class="sim-node" id="nodeSSD" onclick="inspectSimDevice('ssd')">
+              <span class="node-ico">💾</span>
+              <strong>SSD</strong>
+              <small>Menyimpan Berkas File</small>
+              <div class="node-signal"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Status Log Simulasi Berjalan -->
+        <div class="sim-status-terminal">
+          <div class="st-head">
+            <span class="st-dot dot-red"></span>
+            <span class="st-dot dot-yellow"></span>
+            <span class="st-dot dot-green"></span>
+            <span class="st-title">Log Proses Komputer Real-Time:</span>
+          </div>
+          <div class="st-body" id="simLogTerminal">
+            <p class="log-line text-muted">Klik tombol "Jalankan Simulasi Alur!" di atas untuk melihat data bergerak.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- 5. MENU KUIS (EVALUASI 10 SOAL)                       -->
+    <!-- ===================================================== -->
+    <section id="kuis" class="content-section">
+      
+      <div class="section-heading">
+        <div class="badge-tag">EVALUASI PEMAHAMAN</div>
+        <h2>Kuis Interaktif: Perangkat Keras Komputer</h2>
+        <p>Uji seberapa dalam pemahamanmu mengenai fungsi, kategori, dan penerapan hardware dalam 10 soal interaktif.</p>
+      </div>
+
+      <div class="quiz-wrapper">
+        
+        <!-- Layar Soal Berjalan -->
+        <div class="quiz-active-box" id="quizActiveBox">
+          
+          <div class="quiz-header-status">
+            <div class="quiz-progress-text">
+              <span class="soal-badge" id="quizQuestionNumberBadge">SOAL 1 / 10</span>
+              <span class="soal-category-tag" id="quizCategoryBadge">Input Device</span>
+            </div>
+            <div class="quiz-score-badge">
+              <span>Skor Sementara: </span>
+              <strong id="quizCurrentScore">0</strong>
+            </div>
+          </div>
+
+          <!-- Bar Stepper Soal -->
+          <div class="quiz-stepper-bar">
+            <div class="quiz-stepper-fill" id="quizStepperFill" style="width: 10%;"></div>
+          </div>
+
+          <!-- Teks Pertanyaan -->
+          <div class="quiz-question-card">
+            <h3 class="quiz-question-title" id="quizQuestionTitle">
+              Perangkat yang digunakan untuk mengetik huruf dan angka ke komputer adalah...
+            </h3>
+          </div>
+
+          <!-- 4 Opsi Jawaban Pilihan Ganda -->
+          <div class="quiz-options-list" id="quizOptionsContainer">
+            <!-- 4 Opsi dirender via JS -->
+          </div>
+
+          <!-- Umpan Balik Soal & Penjelasan -->
+          <div class="quiz-feedback-box" id="quizFeedbackBox" style="display: none;">
+            <div class="fb-badge" id="quizFeedbackBadge">Jawaban Tepat! 🎉</div>
+            <p class="fb-text" id="quizFeedbackText">Penjelasan lengkap mengenai jawaban pertanyaan ini.</p>
+          </div>
+
+          <!-- Tombol Lanjut Soal -->
+          <div class="quiz-nav-row">
+            <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuizQuestion()" style="display: none;">
+              <span>Soal Selanjutnya ➔</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Layar Hasil Akhir Kuis -->
+        <div class="quiz-result-box" id="quizResultBox" style="display: none;">
+          <div class="qr-trophy" id="quizTrophyIcon">🏆</div>
+          <h2 class="qr-title" id="quizResultCategoryTitle">Sangat Baik!</h2>
+          <p class="qr-subtitle" id="quizResultSubtitle">Selamat! Kamu memahami perangkat keras komputer dengan sangat luar biasa!</p>
+          
+          <div class="qr-score-circle">
+            <div class="qr-big-score" id="quizFinalScoreNumber">100</div>
+            <span class="qr-total-label">dari 100 poin</span>
+          </div>
+
+          <div class="qr-summary-stats">
+            <div class="stat-pill stat-correct">
+              <span>Benar:</span>
+              <strong id="quizStatCorrect">10</strong>
+            </div>
+            <div class="stat-pill stat-wrong">
+              <span>Salah:</span>
+              <strong id="quizStatWrong">0</strong>
+            </div>
+          </div>
+
+          <!-- Daftar Review Jawaban Kuis -->
+          <div class="quiz-review-section">
+            <h4 class="qrs-title">📋 Pembahasan & Review Soal:</h4>
+            <div class="qrs-list" id="quizReviewList"></div>
+          </div>
+
+          <div class="qr-actions">
+            <button class="btn btn-primary" onclick="restartQuiz()">
+              <span>🔄 Ulangi Kuis</span>
+            </button>
+            <button class="btn btn-outline" onclick="navigateTo('materi')">
+              <span>📚 Buka Kembali Materi</span>
+            </button>
+            <button class="btn btn-accent" onclick="navigateTo('rangkuman')">
+              <span>💡 Lihat Rangkuman Akhir</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- 6. MENU RANGKUMAN                                     -->
+    <!-- ===================================================== -->
+    <section id="rangkuman" class="content-section">
+      
+      <div class="section-heading">
+        <div class="badge-tag">INTISARI MATERI</div>
+        <h2>Rangkuman Perangkat Keras Komputer</h2>
+        <p>Poin-poin pokok dan tabel rujukan penting untuk dipelajari kembali di rumah maupun di kelas.</p>
+      </div>
+
+      <div class="rangkuman-wrapper">
+        
+        <!-- Kartu 6 Intisari Pokok Sesuai Spesifikasi -->
+        <div class="summary-points-card">
+          <div class="sp-header">
+            <span class="sp-icon">📌</span>
+            <h3>6 Kesimpulan Utama Materi:</h3>
+          </div>
+          <div class="sp-list">
+            <div class="sp-item">
+              <span class="sp-check">✓</span>
+              <div class="sp-text">
+                <strong>Hardware</strong> adalah bagian fisik komputer yang dapat dilihat dan disentuh secara nyata, bertindak sebagai pelaksana perintah pengguna.
+              </div>
+            </div>
+
+            <div class="sp-item">
+              <span class="sp-check">✓</span>
+              <div class="sp-text">
+                <strong>Perangkat Input</strong> (seperti keyboard, mouse, scanner, mikrofon) digunakan untuk memasukkan data dan instruksi ke komputer.
+              </div>
+            </div>
+
+            <div class="sp-item">
+              <span class="sp-check">✓</span>
+              <div class="sp-text">
+                <strong>Perangkat Proses</strong> (seperti CPU sebagai otak, RAM sebagai memori kerja, GPU sebagai pengolah visual) bertugas mengolah instruksi data.
+              </div>
+            </div>
+
+            <div class="sp-item">
+              <span class="sp-check">✓</span>
+              <div class="sp-text">
+                <strong>Perangkat Output</strong> (seperti monitor, printer, speaker, proyektor) digunakan untuk menyajikan hasil pengolahan kepada pengguna.
+              </div>
+            </div>
+
+            <div class="sp-item">
+              <span class="sp-check">✓</span>
+              <div class="sp-text">
+                <strong>Perangkat Storage</strong> (seperti SSD, HDD, Flashdisk) bertugas menyimpan berkas, file, dan sistem agar tidak hilang saat komputer mati.
+              </div>
+            </div>
+
+            <div class="sp-item">
+              <span class="sp-check">✓</span>
+              <div class="sp-text">
+                <strong>Perangkat Network</strong> (seperti router, modem, switch) menghubungkan komputer satu dengan lainnya ke jaringan lokal atau internet global.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabel Matriks Sesuai Spesifikasi -->
+        <div class="table-container">
+          <div class="table-title">📑 Tabel Klasifikasi Perangkat Keras Komputer:</div>
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Kategori</th>
+                <th>Ikon</th>
+                <th>Contoh Perangkat</th>
+                <th>Fungsi Utama</th>
+                <th>Peran dalam Siklus Komputer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-pill badge-primary">INPUT</span></td>
+                <td>⌨️ 🖱️</td>
+                <td><strong>Keyboard, Mouse, Mic, Webcam</strong></td>
+                <td>Memasukkan data & perintah</td>
+                <td>Titik awal masuknya data mentah dari pengguna</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-process-pill">PROCESS</span></td>
+                <td>🧠 ⚡</td>
+                <td><strong>CPU, RAM, GPU, Motherboard</strong></td>
+                <td>Mengolah dan menghitung data</td>
+                <td>Pusat kalkulasi matematika dan logika digital</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-output-pill">OUTPUT</span></td>
+                <td>🖥️ 🖨️ 🔊</td>
+                <td><strong>Monitor, Printer, Speaker, Proyektor</strong></td>
+                <td>Menampilkan dan menyajikan hasil</td>
+                <td>Mengubah data digital menjadi informasi yang kita pahami</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-storage-pill">STORAGE</span></td>
+                <td>💾 ⚡</td>
+                <td><strong>SSD, HDD, Flashdisk, MicroSD</strong></td>
+                <td>Menyimpan data berkas permanen</td>
+                <td>Menyimpan hasil tugas agar aman dan dapat dibuka kapan saja</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-network-pill">NETWORK</span></td>
+                <td>📡 📶</td>
+                <td><strong>Router, Modem, Switch, Access Point</strong></td>
+                <td>Menghubungkan jaringan internet</td>
+                <td>Membuka gerbang komunikasi data antar perangkat di dunia</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pesan Penutup Edukatif Sesuai Spesifikasi -->
+        <div class="inspire-box">
+          <div class="ib-icon">💡</div>
+          <div class="ib-content">
+            <h4>Pesan Guru Informatika:</h4>
+            <p>
+              “Sekarang kamu sudah mengenal berbagai perangkat keras komputer. 
+              Coba perhatikan komputer di sekitarmu, di laboratorium sekolah, atau di rumah, 
+              dan temukan perangkat-perangkat tersebut! Rawatlah perangkat komputermu dengan baik agar selalu awet dan membantu kegiatan belajarmu.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Rangkuman -->
+        <div class="summary-actions">
+          <button class="btn btn-primary" onclick="navigateTo('materi')">
+            <span>🔄 Belajar Lagi di Modul Materi</span>
+          </button>
+          <button class="btn btn-outline" onclick="window.print()">
+            <span>🖨️ Cetak / Simpan Ringkasan (PDF)</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ======================================================= -->
+  <!-- MODAL POPUP DETAIL HARDWARE                             -->
+  <!-- ======================================================= -->
+  <div class="modal-overlay" id="hardwareModal" onclick="closeHardwareModal(event)" role="dialog" aria-modal="true">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeHardwareModal()" aria-label="Tutup Detail">✕</button>
+      
+      <div class="modal-header">
+        <div class="modal-icon-wrap" id="modalDeviceIcon">🖥️</div>
+        <div>
+          <div class="modal-category-badge" id="modalDeviceCategory">INPUT DEVICE</div>
+          <h2 class="modal-title" id="modalDeviceName">Keyboard</h2>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="modal-section">
+          <h4 class="modal-sec-title">🎯 Fungsi Utama:</h4>
+          <p class="modal-text" id="modalDeviceFunction"></p>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-sec-title">🏫 Contoh Penggunaan Sehari-Hari:</h4>
+          <p class="modal-text" id="modalDeviceExample"></p>
+        </div>
+
+        <div class="modal-section modal-highlight">
+          <h4 class="modal-sec-title">✨ Fakta Menarik / Tahukah Kamu?</h4>
+          <p class="modal-text" id="modalDeviceFunFact"></p>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-sec-title">⚙️ Spesifikasi / Tips Siswa:</h4>
+          <p class="modal-text" id="modalDeviceTips"></p>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="closeHardwareModal()">
+          <span>Selesai & Tutup</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- FOOTER                                                  -->
+  <!-- ======================================================= -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="footer-logo">💻</span>
+          <strong>Informatika SMP/MTs • Perangkat Keras Komputer</strong>
+        </div>
+        <p class="footer-desc">Media pembelajaran interaktif berbasis web untuk kelas VII dan VIII. Didesain ramah kelas, proyektor, dan gawai siswa.</p>
+      </div>
+
+      <div class="footer-right">
+        <button class="btn-reset-progress" onclick="confirmResetProgress()" title="Ulangi progres belajar dari 0%">
+          <span>🔄 Reset Progres Belajar</span>
+        </button>
+        <p class="footer-copy">© 2026 Pembelajaran Digital Informatika SMP/MTs. Seluruh Hak Cipta Terpelihara.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- File JavaScript Terpisah Wajib -->
+  <script src="script.js"></script>
+</body>
+</html>
