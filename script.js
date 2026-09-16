@@ -695,15 +695,21 @@ function scrollToMateri(elementId, btnElement) {
     const headerHeight = header ? header.offsetHeight : 70;
     const yOffset = -(headerHeight + 14);
     const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   }
 
   // Highlight tombol aktif pada quick-nav
-  if (btnElement) {
-    document.querySelectorAll(".quick-nav-btn").forEach(b => b.classList.remove("active"));
-    btnElement.classList.add("active");
-    if (typeof btnElement.scrollIntoView === "function") {
-      btnElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  const allBtns = document.querySelectorAll(".quick-nav-btn");
+  allBtns.forEach(b => b.classList.remove("active"));
+
+  const targetBtn = btnElement || document.querySelector(`.quick-nav-btn[onclick*="'${elementId}'"]`);
+  if (targetBtn) {
+    targetBtn.classList.add("active");
+    // Geser HANYA scroll horizontal pada container quick-nav jika overflow (di layar kecil)
+    const navContainer = document.querySelector(".materi-quick-nav");
+    if (navContainer && navContainer.scrollWidth > navContainer.clientWidth) {
+      const leftPos = targetBtn.offsetLeft - (navContainer.clientWidth / 2) + (targetBtn.offsetWidth / 2);
+      navContainer.scrollTo({ left: Math.max(0, leftPos), behavior: "smooth" });
     }
   }
 }
@@ -1723,7 +1729,7 @@ function initMateriScrollSpy() {
 
   const observerOptions = {
     root: null,
-    rootMargin: "-15% 0px -65% 0px",
+    rootMargin: "-20% 0px -60% 0px",
     threshold: 0
   };
 
@@ -1737,8 +1743,13 @@ function initMateriScrollSpy() {
           if (onclickAttr.includes(`'${id}'`)) {
             quickNavBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            if (typeof btn.scrollIntoView === "function") {
-              btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+
+            // Hanya geser scroll horizontal pada kontainer quick-nav bila layar sempit
+            // JANGAN pernah gunakan btn.scrollIntoView() karena akan menarik scroll vertikal halaman ke atas!
+            const navContainer = document.querySelector(".materi-quick-nav");
+            if (navContainer && navContainer.scrollWidth > navContainer.clientWidth) {
+              const leftPos = btn.offsetLeft - (navContainer.clientWidth / 2) + (btn.offsetWidth / 2);
+              navContainer.scrollTo({ left: Math.max(0, leftPos), behavior: "smooth" });
             }
           }
         });
